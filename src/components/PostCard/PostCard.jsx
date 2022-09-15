@@ -21,7 +21,7 @@ function PostCard({ postData }) {
       <CardMedia
         component="img"
         height="140"
-        image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+        image="https://i.pinimg.com/originals/be/2d/23/be2d23ad226fdee3fd0bcb5b83ad6f3b.jpg"
         alt="green iguana"
       />
       <CardContent>

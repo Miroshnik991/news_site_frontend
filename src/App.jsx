@@ -1,4 +1,7 @@
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import MainPage from './components/MainPage/MainPage';
 
