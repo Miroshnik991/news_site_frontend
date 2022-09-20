@@ -1,7 +1,7 @@
 import { LOADING, RECIEVED, ERROR } from '../actions';
 
 const defaultState = {
-  post: [],
+  posts: [],
   isFetching: false,
   error: null,
 };
@@ -17,14 +17,12 @@ const postReducer = (state = defaultState, action = {}) => {
     case RECIEVED:
       return {
         ...state,
-        post: action.payload,
+        posts: action.payload,
         isFetching: false,
-        error: null,
       };
     case ERROR:
       return {
         ...state,
-        post: [],
         isFetching: false,
         error: action.payload,
       };

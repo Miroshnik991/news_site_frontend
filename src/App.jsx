@@ -3,7 +3,10 @@ import React from 'react';
 import MainPage from './components/MainPage/MainPage';
 
 const cardStyle = {
-  display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap', alignItems: 'center',
+  display: 'flex',
+  justifyContent: 'space-evenly',
+  flexWrap: 'wrap',
+  alignItems: 'center',
 };
 
 function App() {

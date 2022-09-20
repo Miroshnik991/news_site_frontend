@@ -41,7 +41,7 @@ function PostCard({ postData }) {
 
 PostCard.propTypes = {
   postData: PropTypes.shape({
-    content: PropTypes.string,
+    content: PropTypes.string.isRequired,
     tags: PropTypes.arrayOf(PropTypes.shape({
       tag_name: PropTypes.string.isRequired,
     })).isRequired,

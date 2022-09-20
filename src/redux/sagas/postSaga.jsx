@@ -2,13 +2,15 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 
 import { LOADING } from '../actions';
 import { getError, recievePost } from '../actionCreators';
-import request from '../api/request';
+import api from '../api/index';
 
 function* postWorker() {
-  const { data, status, message } = yield call(request);
-  if (status === 200) {
+  try {
+    const { data } = yield call(() => api.get('/posts'));
     yield put(recievePost(data));
-  } else yield put(getError(message));
+  } catch (error) {
+    yield put(getError(error.name));
+  }
 }
 
 function* postWatcher() {

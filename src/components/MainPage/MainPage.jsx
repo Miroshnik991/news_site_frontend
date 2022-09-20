@@ -6,13 +6,12 @@ import { getPosts } from '../../redux/actionCreators';
 
 function MainPage() {
   const dispatch = useDispatch();
-  const res = useSelector((state) => state.post.post);
+  const res = useSelector((state) => state.post.posts);
   const isFetching = useSelector((state) => state.post.isFetching);
   const error = useSelector((state) => state.post.error);
 
   useEffect(() => {
     dispatch(getPosts());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isFetching) {
