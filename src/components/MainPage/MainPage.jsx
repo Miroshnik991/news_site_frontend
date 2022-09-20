@@ -9,26 +9,26 @@ function MainPage() {
   const res = useSelector((state) => state.post.posts);
   const isFetching = useSelector((state) => state.post.isFetching);
   const error = useSelector((state) => state.post.error);
+  let content;
 
   useEffect(() => {
     dispatch(getPosts());
   }, []);
 
   if (isFetching) {
-    return (
+    content = (
       <div className="spinner-border" role="status">
         <span className="sr-only">Loading...</span>
       </div>
     );
-  }
-  if (error) {
-    return (
+  } else if (error) {
+    content = (
       <div className="alert alert-danger" role="alert">
         {error}
       </div>
     );
-  }
-  return res.map((post) => <PostCard postData={post} key={post.id} />);
+  } else content = res.map((post) => <PostCard postData={post} key={post.id} />);
+  return content;
 }
 
 export default memo(MainPage);
