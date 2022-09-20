@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { LOADING, RECIEVED, ERROR } from '../actions';
 
 const defaultState = {

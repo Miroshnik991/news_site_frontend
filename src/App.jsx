@@ -1,16 +1,16 @@
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
 import React from 'react';
 
 import MainPage from './components/MainPage/MainPage';
+
+const cardStyle = {
+  display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap', alignItems: 'center',
+};
 
 function App() {
   return (
     <div
       className="App"
-      style={{
-        display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap', alignItems: 'center',
-      }}
+      style={cardStyle}
     >
       <MainPage />
     </div>
