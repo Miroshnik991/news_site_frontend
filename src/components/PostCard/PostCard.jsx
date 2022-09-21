@@ -1,14 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import PropTypes from 'prop-types';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
-const style = { maxWidth: '300px' };
+const style = { width: '40%' };
 
 function PostCard({ postData }) {
-  const tags = postData.tags.map((tag) => `#${tag.tag_name} `);
   return (
     <Card sx={style}>
       <CardContent>
@@ -18,12 +20,15 @@ function PostCard({ postData }) {
           </Typography>
         </Typography>
       </CardContent>
-      <CardMedia
-        component="img"
-        height="140"
-        image="https://i.pinimg.com/originals/be/2d/23/be2d23ad226fdee3fd0bcb5b83ad6f3b.jpg"
-        alt="green iguana"
-      />
+      {
+        postData.image && (
+        <CardMedia
+          component="img"
+          height="200"
+          image={postData.image}
+        />
+        )
+      }
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {postData.content}
@@ -31,9 +36,9 @@ function PostCard({ postData }) {
         <Typography variant="body2" color="text.secondary">
           {postData.user.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {tags}
-        </Typography>
+        <Stack direction="row" spacing={1}>
+          {postData.tags.map((tag) => <Chip label={tag.tag_name} key={tag.id} size="small" />)}
+        </Stack>
       </CardContent>
     </Card>
   );
@@ -43,8 +48,10 @@ PostCard.propTypes = {
   postData: PropTypes.shape({
     content: PropTypes.string.isRequired,
     tags: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
       tag_name: PropTypes.string.isRequired,
     })).isRequired,
+    image: PropTypes.string.isRequired,
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }).isRequired,
@@ -52,4 +59,4 @@ PostCard.propTypes = {
   }).isRequired,
 };
 
-export default PostCard;
+export default React.memo(PostCard);

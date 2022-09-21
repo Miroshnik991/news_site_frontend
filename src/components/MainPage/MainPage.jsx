@@ -1,34 +1,25 @@
-import React, { useEffect, memo } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { CircularProgress, Alert } from '@mui/material';
 import PostCard from '../PostCard/PostCard';
 import { getPosts } from '../../redux/actionCreators';
 
 function MainPage() {
   const dispatch = useDispatch();
-  const res = useSelector((state) => state.post.posts);
-  const isFetching = useSelector((state) => state.post.isFetching);
-  const error = useSelector((state) => state.post.error);
-  let content;
+  const { posts, isFetching, error } = useSelector((state) => state.postsReducer);
 
   useEffect(() => {
     dispatch(getPosts());
   }, []);
 
-  if (isFetching) {
-    content = (
-      <div className="spinner-border" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
-    );
-  } else if (error) {
-    content = (
-      <div className="alert alert-danger" role="alert">
-        {error}
-      </div>
-    );
-  } else content = res.map((post) => <PostCard postData={post} key={post.id} />);
-  return content;
+  return (
+    <>
+      {isFetching && <CircularProgress />}
+      {error && <Alert severity="error">{error}</Alert>}
+      {Boolean(posts.length) && posts.map((post) => <PostCard postData={post} key={post.id} />)}
+    </>
+  );
 }
 
-export default memo(MainPage);
+export default React.memo(MainPage);

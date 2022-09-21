@@ -6,7 +6,7 @@ const defaultState = {
   error: null,
 };
 
-const postReducer = (state = defaultState, action = {}) => {
+const postsReducer = (state = defaultState, action = {}) => {
   switch (action.type) {
     case LOADING:
       return {
@@ -31,4 +31,4 @@ const postReducer = (state = defaultState, action = {}) => {
   }
 };
 
-export default postReducer;
+export default postsReducer;
