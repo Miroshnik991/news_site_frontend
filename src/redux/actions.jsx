@@ -1,3 +1,7 @@
-export const LOADING = 'LOADING';
-export const RECIEVED = 'RECIEVED';
-export const ERROR = 'ERROR';
+const ActionTypes = {
+  LOADING: 'LOADING',
+  RECIEVED: 'RECIEVED',
+  ERROR: 'ERROR',
+};
+
+export default ActionTypes;

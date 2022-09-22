@@ -1,5 +1,5 @@
-import { LOADING, RECIEVED, ERROR } from './actions';
+import ActionTypes from './actions';
 
-export const getPosts = () => ({ type: LOADING });
-export const recievePost = (data) => ({ type: RECIEVED, payload: data });
-export const getError = (error) => ({ type: ERROR, payload: error });
+export const createPostsLoader = () => ({ type: ActionTypes.LOADING });
+export const recievePosts = (data) => ({ type: ActionTypes.RECIEVED, payload: data });
+export const getPostsError = (error) => ({ type: ActionTypes.ERROR, payload: error });

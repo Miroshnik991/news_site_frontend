@@ -1,4 +1,4 @@
-import { LOADING, RECIEVED, ERROR } from '../actions';
+import ActionTypes from '../actions';
 
 const defaultState = {
   posts: [],
@@ -8,19 +8,19 @@ const defaultState = {
 
 const postsReducer = (state = defaultState, action = {}) => {
   switch (action.type) {
-    case LOADING:
+    case ActionTypes.LOADING:
       return {
         ...state,
         isFetching: true,
         error: null,
       };
-    case RECIEVED:
+    case ActionTypes.RECIEVED:
       return {
         ...state,
         posts: action.payload,
         isFetching: false,
       };
-    case ERROR:
+    case ActionTypes.ERROR:
       return {
         ...state,
         isFetching: false,
