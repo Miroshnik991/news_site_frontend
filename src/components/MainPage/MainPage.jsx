@@ -21,6 +21,7 @@ function MainPage() {
   const { posts, isFetching, error } = useSelector((state) => state.postsReducer);
   useEffect(() => {
     dispatch(createPostsLoader());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
