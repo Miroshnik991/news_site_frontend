@@ -13,7 +13,7 @@ function* authWorker(action) {
   try {
     const { data } = yield call(api.post, '/login', action.payload);
     yield call(setToken, data.token);
-    yield put(requestAuthSuccess(action.payload.email));
+    yield put(requestAuthSuccess(data.user));
   } catch (error) {
     yield put(requestAuthError(error.response.data.message));
   }

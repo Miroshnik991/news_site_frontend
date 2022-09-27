@@ -5,6 +5,7 @@ const initialState = {
   isAuth: Boolean(getToken()),
   isisLoading: false,
   isError: null,
+  userData: null,
 };
 
 const authReducer = (state = initialState, action = {}) => {
@@ -27,9 +28,10 @@ const authReducer = (state = initialState, action = {}) => {
     case ActionTypes.REGISTRATION_REQUEST_SUCCESS:
       return {
         ...state,
-        isAuth: { email: action.payload },
+        isAuth: action.payload.email,
         isLoading: false,
         isError: null,
+        userData: action.payload,
       };
     case ActionTypes.SIGN_OUT_REQUEST:
       return {
