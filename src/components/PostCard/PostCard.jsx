@@ -51,7 +51,7 @@ PostCard.propTypes = {
       id: PropTypes.number.isRequired,
       tag_name: PropTypes.string.isRequired,
     })).isRequired,
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string,
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }).isRequired,

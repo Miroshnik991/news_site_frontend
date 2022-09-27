@@ -56,7 +56,7 @@ function AuthorizationWindow(props) {
         <DialogContent>
           {target === 'sign-up' ? (
             <TextField
-              error={!!((formik.touched.name && formik.errors.name))}
+              error={!!(formik.touched.name && formik.errors.name)}
               autoFocus
               margin="dense"
               id="name"
@@ -71,7 +71,7 @@ function AuthorizationWindow(props) {
             />
           ) : null}
           <TextField
-            error={!!((formik.touched.email && formik.errors.email))}
+            error={!!(formik.touched.email && formik.errors.email)}
             margin="dense"
             id="email"
             label="Email Address"
@@ -84,7 +84,7 @@ function AuthorizationWindow(props) {
             onChange={formik.handleChange}
           />
           <TextField
-            error={!!((formik.touched.password && formik.errors.password))}
+            error={!!(formik.touched.password && formik.errors.password)}
             margin="dense"
             id="password"
             label="Password"
