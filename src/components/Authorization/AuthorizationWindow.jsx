@@ -1,9 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-// import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 import {
   Button,
@@ -17,7 +15,7 @@ import {
   Alert,
 } from '@mui/material';
 
-import { requestRegistration, requestAuth } from '../../redux/actionCreators';
+import { requestRegistration, requestLogin } from '../../redux/actionCreators';
 import SignupSchema from '../../utils/singupValidationScheme';
 
 function AuthorizationWindow(props) {
@@ -42,7 +40,7 @@ function AuthorizationWindow(props) {
       if (target === 'sign-up') {
         dispatch(requestRegistration(values));
       } else {
-        dispatch(requestAuth(values));
+        dispatch(requestLogin(values));
       }
       resetForm();
     },

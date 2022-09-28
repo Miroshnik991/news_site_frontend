@@ -1,7 +1,10 @@
 import ActionTypes from '../actions';
 
 const initialState = {
-  current: null,
+  currentUser: {},
+  userPageloading: false,
+  userPageError: null,
+  currentUserPosts: [],
 };
 
 const usersReducer = (state = initialState, action = {}) => {
@@ -9,20 +12,21 @@ const usersReducer = (state = initialState, action = {}) => {
     case ActionTypes.CURRENT_USER_REQUEST:
       return {
         ...state,
-        loading: true,
+        userPageloading: true,
       };
     case ActionTypes.CURRENT_USER_ERROR:
       return {
         ...state,
-        loading: false,
-        error: action.error,
+        userPageloading: false,
+        userPageError: action.error,
       };
     case ActionTypes.CURRENT_USER_SUCCESS:
       return {
         ...state,
-        current: action.payload,
-        loading: false,
-        error: false,
+        currentUser: action.payload.user,
+        userPageloading: false,
+        userPageError: false,
+        currentUserPosts: action.payload.posts,
       };
     default:
       return state;

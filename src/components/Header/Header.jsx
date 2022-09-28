@@ -1,6 +1,6 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -9,15 +9,17 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 import AuthorizationWindow from '../Authorization/AuthorizationWindow';
-import { requestSignOut } from '../../redux/actionCreators';
+import { requestSignOut, requestAuth } from '../../redux/actionCreators';
 
 function Header() {
   const dispatch = useDispatch();
   const { isAuth, userData } = useSelector((state) => state.authReducer);
-  console.log(userData);
   const [open, setOpen] = useState(false);
   const [target, setTarget] = useState('');
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuth && !userData.id) dispatch(requestAuth());
+  }, []);
 
   const handleOpen = () => {
     setOpen(true);
@@ -32,7 +34,7 @@ function Header() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            <Link to="/">News</Link>
           </Typography>
           {!isAuth && (
           <>
@@ -64,12 +66,11 @@ function Header() {
               color="inherit"
               className="sign-out"
             />
-            <Link to={`/users/${userData?.id}`}>My Profile</Link>
+            <Link to={`/users/${userData.id}`}>My Profile</Link>
             <Button
               color="inherit"
               className="sign-out"
               onClick={() => {
-                navigate('/');
                 dispatch(requestSignOut());
               }}
             >

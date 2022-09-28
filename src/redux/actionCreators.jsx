@@ -14,15 +14,15 @@ export const requestRegistrationSuccess = (payload) => ({
 export const requestRegistrationError = (error) => ({
   type: ActionTypes.REGISTRATION_REQUEST_ERROR, error,
 });
-export const requestAuth = (payload) => ({ type: ActionTypes.AUTH_REQUEST, payload });
+export const requestLogin = (payload) => ({ type: ActionTypes.LOGIN_REQUEST, payload });
 
-export const requestAuthSuccess = (payload) => ({
-  type: ActionTypes.REGISTRATION_REQUEST_SUCCESS,
+export const requestLoginSuccess = (payload) => ({
+  type: ActionTypes.LOGIN_REQUEST_SUCCESS,
   payload,
 });
 
-export const requestAuthError = (error) => ({
-  type: ActionTypes.REGISTRATION_REQUEST_ERROR,
+export const requestLoginError = (error) => ({
+  type: ActionTypes.LOGIN_REQUEST_ERROR,
   error,
 });
 
@@ -36,5 +36,17 @@ export const requestSignOutSuccess = () => ({
 
 export const requestSignOutError = (error) => ({
   type: ActionTypes.SIGN_OUT_ERROR,
+  error,
+});
+
+export const requestAuth = () => ({ type: ActionTypes.AUTH_REQUEST });
+
+export const requestAuthSuccess = (payload) => ({
+  type: ActionTypes.AUTH_REQUEST_SUCCESS,
+  payload,
+});
+
+export const requestAuthError = (error) => ({
+  type: ActionTypes.AUTH_REQUEST_ERROR,
   error,
 });

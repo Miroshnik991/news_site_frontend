@@ -6,53 +6,49 @@ import {
   Avatar, Typography, Button, Alert, CircularProgress, Box,
 } from '@mui/material';
 
-// import PostCard from '../PostCard/PostCard';
-// import returnImage from '../../lib/returnImage';
+import PostCard from '../PostCard/PostCard';
 import { requestCurrentUser } from '../../redux/usersActionCreators';
 
 function UserPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
-
   useEffect(() => {
     dispatch(requestCurrentUser(id));
   }, [dispatch, id]);
 
   const {
-    isLoading,
-    isError,
     userData,
   } = useSelector((state) => state.authReducer);
-
-  //   const { posts } = useSelector((state) => state.postReducer);
-  const { current } = useSelector((state) => state.usersReducer);
-
-  if (isError) {
+  const {
+    currentUser,
+    userPageLoading,
+    userPageError,
+    currentUserPosts,
+  } = useSelector((state) => state.usersReducer);
+  if (userPageError) {
     return (
-      <Alert severity="error">{isError}</Alert>
+      <Alert severity="error">{userPageError}</Alert>
     );
   }
-
-  if (isLoading) {
+  if (userPageLoading) {
     return (
       <Box sx={{ display: 'flex' }}>
         <CircularProgress />
       </Box>
     );
   }
-  if (current) {
+  if (currentUser) {
     return (
       <>
         <div>
           <Avatar
             alt="Remy Sharp"
-            // src={returnImage(posts.image)}
             sx={{ width: 250, height: 250 }}
           />
           <Typography gutterBottom variant="h5">
-            {current.name}
+            {currentUser.name}
           </Typography>
-          {current.id === userData.id && (
+          {currentUser.id === userData.id && (
           <div>
             <Button
               variant="contained"
@@ -68,12 +64,12 @@ function UserPage() {
           )}
         </div>
         <div>
-          {/* {posts.map((item) => (
-          <PostCard
-            key={item.id}
-            data={{ ...item, user: { name: posts.name, id: posts.id } }} */}
-          {/* /> */}
-          {/* ))} */}
+          {currentUserPosts.map((post) => (
+            <PostCard
+              key={post.id}
+              postData={{ ...post, user: { name: currentUser.name, id: currentUser.id } }}
+            />
+          ))}
         </div>
       </>
     );
