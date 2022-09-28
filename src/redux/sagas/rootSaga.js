@@ -4,6 +4,7 @@ import postsWatcher from './postsSaga';
 import registerWatcher from './registerSaga';
 import signOutWatcher from './signOutSaga';
 import authWatcher from './authSaga';
+import currentUserWatcher from './currentUserRequestSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -11,5 +12,6 @@ export default function* rootSaga() {
     call(registerWatcher),
     call(signOutWatcher),
     call(authWatcher),
+    call(currentUserWatcher),
   ]);
 }

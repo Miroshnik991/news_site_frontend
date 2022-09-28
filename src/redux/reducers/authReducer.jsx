@@ -51,6 +51,7 @@ const authReducer = (state = initialState, action = {}) => {
         isAuth: null,
         isLoading: false,
         isError: null,
+        userData: null,
       };
     default:
       return state;

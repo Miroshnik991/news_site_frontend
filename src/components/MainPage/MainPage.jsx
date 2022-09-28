@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,9 +21,13 @@ const mainPageStyle = {
 function MainPage() {
   const dispatch = useDispatch();
   const { posts, isFetching, error } = useSelector((state) => state.postsReducer);
+  console.log(posts);
   useEffect(() => {
     dispatch(createPostsLoader());
   }, []);
+
+  const { userData } = useSelector((state) => state.authReducer);
+  console.log(userData);
 
   return (
     <div style={mainPageStyle}>

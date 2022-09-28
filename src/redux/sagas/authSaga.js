@@ -13,6 +13,8 @@ function* authWorker(action) {
   try {
     const { data } = yield call(api.post, '/login', action.payload);
     yield call(setToken, data.token);
+    // eslint-disable-next-line no-console
+    // console.log(data.user);
     yield put(requestAuthSuccess(data.user));
   } catch (error) {
     yield put(requestAuthError(error.response.data.message));
