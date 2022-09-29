@@ -3,32 +3,33 @@ import ActionTypes from '../actions';
 
 const initialState = {
   isAuth: Boolean(getToken()),
-  isisLoading: false,
+  isLoading: false,
   isError: null,
-  userData: null,
+  userData: {},
 };
 
 const authReducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case ActionTypes.AUTH_REQUEST:
+    case ActionTypes.LOGIN_REQUEST:
     case ActionTypes.REGISTRATION_REQUEST:
       return {
         ...state,
         isLoading: true,
         isError: null,
       };
-    case ActionTypes.AUTH_REQUEST_ERROR:
+    case ActionTypes.LOGIN_REQUEST_ERROR:
     case ActionTypes.REGISTRATION_REQUEST_ERROR:
       return {
         ...state,
         isLoading: false,
         isError: action.error,
       };
-    case ActionTypes.AUTH_REQUEST_SUCCESS:
+    case ActionTypes.LOGIN_REQUEST_SUCCESS:
     case ActionTypes.REGISTRATION_REQUEST_SUCCESS:
+    case ActionTypes.AUTH_REQUEST_SUCCESS:
       return {
         ...state,
-        isAuth: action.payload.email,
+        isAuth: true,
         isLoading: false,
         isError: null,
         userData: action.payload,
@@ -48,9 +49,10 @@ const authReducer = (state = initialState, action = {}) => {
     case ActionTypes.SIGN_OUT_SUCCESS:
       return {
         ...state,
-        isAuth: null,
+        isAuth: false,
         isLoading: false,
         isError: null,
+        userData: {},
       };
     default:
       return state;

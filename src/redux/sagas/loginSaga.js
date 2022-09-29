@@ -4,8 +4,8 @@ import api from '../api/index';
 import { setToken } from '../../utils/localStorage';
 import ActionTypes from '../actions';
 import {
-  requestAuthSuccess,
-  requestAuthError,
+  requestLoginSuccess,
+  requestLoginError,
 }
   from '../actionCreators';
 
@@ -13,14 +13,14 @@ function* authWorker(action) {
   try {
     const { data } = yield call(api.post, '/login', action.payload);
     yield call(setToken, data.token);
-    yield put(requestAuthSuccess(data.user));
+    yield put(requestLoginSuccess(data.user));
   } catch (error) {
-    yield put(requestAuthError(error.response.data.message));
+    yield put(requestLoginError(error.response.data.message));
   }
 }
 
-function* authWatcher() {
-  yield takeLatest(ActionTypes.AUTH_REQUEST, authWorker);
+function* loginWatcher() {
+  yield takeLatest(ActionTypes.LOGIN_REQUEST, authWorker);
 }
 
-export default authWatcher;
+export default loginWatcher;

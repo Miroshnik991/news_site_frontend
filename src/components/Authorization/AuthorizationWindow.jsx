@@ -15,7 +15,7 @@ import {
   Alert,
 } from '@mui/material';
 
-import { requestRegistration, requestAuth } from '../../redux/actionCreators';
+import { requestRegistration, requestLogin } from '../../redux/actionCreators';
 import SignupSchema from '../../utils/singupValidationScheme';
 
 function AuthorizationWindow(props) {
@@ -40,7 +40,7 @@ function AuthorizationWindow(props) {
       if (target === 'sign-up') {
         dispatch(requestRegistration(values));
       } else {
-        dispatch(requestAuth(values));
+        dispatch(requestLogin(values));
       }
       resetForm();
     },
