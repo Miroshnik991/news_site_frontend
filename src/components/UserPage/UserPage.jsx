@@ -14,7 +14,7 @@ function UserPage() {
   const { id } = useParams();
   useEffect(() => {
     dispatch(requestCurrentUser(id));
-  }, [dispatch, id]);
+  }, []);
 
   const {
     userData,
