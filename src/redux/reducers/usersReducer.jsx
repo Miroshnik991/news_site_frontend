@@ -23,7 +23,7 @@ const usersReducer = (state = initialState, action = {}) => {
     case ActionTypes.CURRENT_USER_SUCCESS:
       return {
         ...state,
-        currentUser: action.payload.user,
+        currentUser: action.payload,
         userPageloading: false,
         userPageError: false,
         currentUserPosts: action.payload.posts,

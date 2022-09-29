@@ -64,10 +64,10 @@ function UserPage() {
           )}
         </div>
         <div>
-          {currentUserPosts.map((post) => (
+          {currentUserPosts.map((item) => (
             <PostCard
-              key={post.id}
-              postData={{ ...post, user: { name: currentUser.name, id: currentUser.id } }}
+              key={item.id}
+              postData={{ ...item, user: { name: currentUser.name, id: currentUser.id } }}
             />
           ))}
         </div>
