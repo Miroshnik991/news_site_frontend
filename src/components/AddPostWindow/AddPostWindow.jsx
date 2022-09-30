@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 
 import {
   Button,
@@ -18,30 +17,14 @@ import {
 } from '@mui/material';
 
 import { requestAddPost } from '../../redux/usersActionCreators';
+import SignupSchema from '../../utils/addPostValidationScheme';
 
 function AddPostWindow(props) {
   const dispatch = useDispatch();
-  const { isError, isLoading } = useSelector((state) => state.authReducer);
+  const { userPageError, userPageloading } = useSelector((state) => state.usersReducer);
   const {
     open, handleClose,
   } = props;
-
-  const SignupSchema = Yup.object().shape({
-    title: Yup.string()
-      .min(5, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Required'),
-    content: Yup.string()
-      .min(10, 'Too Short!')
-      .max(700, 'Too Long!')
-      .required('Required'),
-    tags: Yup.string()
-      .min(5, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Required'),
-    file: Yup.string()
-      .required('Required'),
-  });
 
   const formik = useFormik({
     initialValues: {
@@ -65,7 +48,7 @@ function AddPostWindow(props) {
     <Dialog open={open} onClose={handleClose}>
       <form onSubmit={formik.handleSubmit} encType=" multipart/form-data ">
         <DialogTitle>Add news</DialogTitle>
-        {isError && (<Alert severity="error">{isError}</Alert>)}
+        {userPageError && (<Alert severity="error">{userPageError}</Alert>)}
         <DialogContent>
           <TextField
             error={!!(formik.touched.title && formik.errors.title)}
@@ -118,7 +101,7 @@ function AddPostWindow(props) {
             onChange={changeFile}
           />
         </DialogContent>
-        {isLoading && (
+        {userPageloading && (
           <Box sx={{ display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box>
         )}
         <DialogActions>
