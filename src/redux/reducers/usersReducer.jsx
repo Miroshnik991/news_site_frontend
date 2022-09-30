@@ -28,6 +28,25 @@ const usersReducer = (state = initialState, action = {}) => {
         userPageError: false,
         currentUserPosts: action.payload.posts,
       };
+    case ActionTypes.ADD_POST_REQUEST:
+      return {
+        ...state,
+        userPageloading: true,
+        userPageError: null,
+      };
+    case ActionTypes.ADD_POST_ERROR:
+      return {
+        ...state,
+        userPageloading: false,
+        userPageError: action.error,
+      };
+    case ActionTypes.ADD_POST_SUCCESS:
+      return {
+        ...state,
+        currentUserPosts: [...state.currentUserPosts, action.payload],
+        userPageloading: false,
+        userPageError: null,
+      };
     default:
       return state;
   }
