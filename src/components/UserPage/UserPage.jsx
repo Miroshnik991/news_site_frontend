@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 
 import PostCard from '../PostCard/PostCard';
+import AddPostWindow from '../AddPostWindow/AddPostWindow';
 import { requestCurrentUser } from '../../redux/usersActionCreators';
 
 function UserPage() {
@@ -19,12 +20,25 @@ function UserPage() {
   const {
     userData,
   } = useSelector((state) => state.authReducer);
+
+  const [open, setOpen] = useState(false);
+  const [target, setTarget] = useState('');
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const {
     currentUser,
     userPageLoading,
     userPageError,
     currentUserPosts,
   } = useSelector((state) => state.usersReducer);
+
   if (userPageError) {
     return (
       <Alert severity="error">{userPageError}</Alert>
@@ -52,6 +66,10 @@ function UserPage() {
           <div>
             <Button
               variant="contained"
+              onClick={() => {
+                setTarget('add-news');
+                handleOpen();
+              }}
             >
               Add news
             </Button>
@@ -71,6 +89,7 @@ function UserPage() {
             />
           ))}
         </div>
+        {target === 'add-news' && <AddPostWindow open={open} handleClose={handleClose} />}
       </>
     );
   }
