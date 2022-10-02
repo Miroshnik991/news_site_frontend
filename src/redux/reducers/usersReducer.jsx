@@ -47,6 +47,23 @@ const usersReducer = (state = initialState, action = {}) => {
         userPageloading: false,
         userPageError: null,
       };
+    case ActionTypes.EDITING_USER_REQUEST:
+      return {
+        ...state,
+        userPageloading: true,
+      };
+    case ActionTypes.EDITING_USER_ERROR:
+      return {
+        ...state,
+        userPageloading: false,
+        error: action.error,
+      };
+    case ActionTypes.EDITING_USER_SUCCESS:
+      return {
+        ...state,
+        userPageloading: false,
+        // auth: action.payload,
+      };
     default:
       return state;
   }

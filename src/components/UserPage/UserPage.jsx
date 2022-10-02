@@ -9,6 +9,7 @@ import {
 import PostCard from '../PostCard/PostCard';
 import AddPostWindow from '../AddPostWindow/AddPostWindow';
 import { requestCurrentUser } from '../../redux/usersActionCreators';
+import EditProfileWindow from '../EditProfileWindow/EditProfileWindow';
 
 function UserPage() {
   const dispatch = useDispatch();
@@ -75,6 +76,10 @@ function UserPage() {
             </Button>
             <Button
               variant="contained"
+              onClick={() => {
+                setTarget('editing-user');
+                handleOpen();
+              }}
             >
               Editing user
             </Button>
@@ -90,6 +95,7 @@ function UserPage() {
           ))}
         </div>
         {target === 'add-news' && <AddPostWindow open={open} handleClose={handleClose} />}
+        {target === 'editing-user' && <EditProfileWindow open={open} handleClose={handleClose} />}
       </>
     );
   }

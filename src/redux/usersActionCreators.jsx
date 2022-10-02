@@ -23,3 +23,15 @@ export const requestAddPostSuccess = (payload) => ({
 export const requestAddPostError = (error) => ({
   type: ActionTypes.ADD_POST_ERROR, error,
 });
+
+export const requestEditingUser = (payload) => ({
+  type: ActionTypes.EDITING_USER_REQUEST, payload,
+});
+
+export const editingUserSuccess = (payload) => ({
+  type: ActionTypes.EDITING_USER_SUCCESS, payload,
+});
+
+export const editingUserError = (payload) => ({
+  type: ActionTypes.EDITING_USER_ERROR, payload,
+});
