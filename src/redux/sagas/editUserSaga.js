@@ -12,7 +12,6 @@ function* editUserWorker(action) {
     const form = yield new FormData();
     yield form.append('avatar', action.payload.file);
     yield form.append('name', action.payload.username);
-    yield form.append('id', action.payload.id);
     const { data } = yield call(api.post, `/users/${action.payload.id}?_method=PATCH`, form);
     yield put(editingUserSuccess(data));
   } catch (error) {

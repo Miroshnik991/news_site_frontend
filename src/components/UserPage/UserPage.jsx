@@ -3,7 +3,12 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-  Avatar, Typography, Button, Alert, CircularProgress, Box,
+  Avatar,
+  Typography,
+  Button,
+  Alert,
+  CircularProgress,
+  Box,
 } from '@mui/material';
 
 import PostCard from '../PostCard/PostCard';
