@@ -63,6 +63,7 @@ function UserPage() {
         <div>
           <Avatar
             alt="Remy Sharp"
+            src={`${process.env.REACT_APP_API_URL}${currentUser.avatar}`}
             sx={{ width: 250, height: 250 }}
           />
           <Typography gutterBottom variant="h5">
