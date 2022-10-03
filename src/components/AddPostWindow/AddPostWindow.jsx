@@ -21,7 +21,11 @@ import SignupSchema from '../../utils/addPostValidationScheme';
 
 function AddPostWindow(props) {
   const dispatch = useDispatch();
-  const { userPageError, userPageloading } = useSelector((state) => state.usersReducer);
+  const {
+    userPageError,
+    userPageloading,
+    currentUser,
+  } = useSelector((state) => state.usersReducer);
   const {
     open, handleClose,
   } = props;
@@ -32,6 +36,7 @@ function AddPostWindow(props) {
       content: '',
       tags: '',
       file: null,
+      user_id: currentUser.id,
     },
     validationSchema: SignupSchema,
     onSubmit: (values, { resetForm }) => {
