@@ -2,7 +2,7 @@ import ActionTypes from '../actions';
 
 const initialState = {
   currentUser: {},
-  userPageloading: false,
+  userPageLoading: false,
   userPageError: null,
   currentUserPosts: [],
 };
@@ -12,57 +12,57 @@ const usersReducer = (state = initialState, action = {}) => {
     case ActionTypes.CURRENT_USER_REQUEST:
       return {
         ...state,
-        userPageloading: true,
+        userPageLoading: true,
       };
     case ActionTypes.CURRENT_USER_ERROR:
       return {
         ...state,
-        userPageloading: false,
+        userPageLoading: false,
         userPageError: action.error,
       };
     case ActionTypes.CURRENT_USER_SUCCESS:
       return {
         ...state,
         currentUser: action.payload,
-        userPageloading: false,
+        userPageLoading: false,
         userPageError: false,
         currentUserPosts: action.payload.posts,
       };
     case ActionTypes.ADD_POST_REQUEST:
       return {
         ...state,
-        userPageloading: true,
+        userPageLoading: true,
         userPageError: null,
       };
     case ActionTypes.ADD_POST_ERROR:
       return {
         ...state,
-        userPageloading: false,
+        userPageLoading: false,
         userPageError: action.error,
       };
     case ActionTypes.ADD_POST_SUCCESS:
       return {
         ...state,
         currentUserPosts: [...state.currentUserPosts, action.payload],
-        userPageloading: false,
+        userPageLoading: false,
         userPageError: null,
       };
     case ActionTypes.EDITING_USER_REQUEST:
       return {
         ...state,
-        userPageloading: true,
+        userPageLoading: true,
       };
     case ActionTypes.EDITING_USER_ERROR:
       return {
         ...state,
-        userPageloading: false,
+        userPageLoading: false,
         error: action.error,
       };
     case ActionTypes.EDITING_USER_SUCCESS:
       return {
         ...state,
-        userPageloading: false,
-        // auth: action.payload,
+        currentUser: action.payload,
+        userPageLoading: false,
       };
     default:
       return state;

@@ -25,7 +25,7 @@ function PostCard({ postData }) {
         <CardMedia
           component="img"
           height="200"
-          image={postData.image}
+          image={`http://127.0.0.1:8000${postData.image}`}
         />
         )
       }

@@ -4,19 +4,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 
 import {
-  Button, TextField, Dialog, DialogActions, DialogContent,
-  DialogTitle, CircularProgress, Box, Alert, Input,
+  Button,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  CircularProgress,
+  Box,
+  Alert,
+  Input,
 } from '@mui/material';
 
 import { requestEditingUser } from '../../redux/usersActionCreators';
-import SignupSchema from '../../utils/editProfileValidationScheme';
+import EditProfileSsheme from '../../utils/editProfileValidationScheme';
 
 function EditProfileWindow(props) {
   const dispatch = useDispatch();
 
   const {
     userPageError,
-    userPageloading,
+    userPageLoading,
     currentUser,
   } = useSelector((state) => state.usersReducer);
 
@@ -29,7 +37,7 @@ function EditProfileWindow(props) {
       username: currentUser.name,
       file: null,
     },
-    validationSchema: SignupSchema,
+    validationSchema: EditProfileSsheme,
     onSubmit: (values, { resetForm }) => {
       dispatch(requestEditingUser({ ...values, id: currentUser.id }));
       resetForm();
@@ -73,7 +81,7 @@ function EditProfileWindow(props) {
             onChange={changeFile}
           />
         </DialogContent>
-        {userPageloading && (
+        {userPageLoading && (
           <Box sx={{ display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box>
         )}
         <DialogActions>
