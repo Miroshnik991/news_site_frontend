@@ -6,7 +6,7 @@ import { requestCurrentUserSuccess, requestCurrentUserError } from '../usersActi
 
 function* currentUserWorker(action) {
   try {
-    const { data } = yield call(api.get, `/users/${action.payload}`);
+    const { data } = yield call(api.get, `/api/users/${action.payload}`);
     yield put(requestCurrentUserSuccess(data));
   } catch (error) {
     yield put(requestCurrentUserError(error.response.data.message));

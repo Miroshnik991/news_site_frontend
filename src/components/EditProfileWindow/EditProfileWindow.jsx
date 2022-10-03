@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 
 import {
@@ -16,82 +16,57 @@ import {
   Input,
 } from '@mui/material';
 
-import { requestAddPost } from '../../redux/usersActionCreators';
-import SignupSchema from '../../utils/addPostValidationScheme';
+import { requestEditingUser } from '../../redux/usersActionCreators';
+import EditProfileSsheme from '../../utils/editProfileValidationScheme';
 
-function AddPostWindow(props) {
+function EditProfileWindow(props) {
   const dispatch = useDispatch();
+
   const {
     userPageError,
-    userPageloading,
+    userPageLoading,
     currentUser,
   } = useSelector((state) => state.usersReducer);
+
   const {
     open, handleClose,
   } = props;
 
   const formik = useFormik({
     initialValues: {
-      title: '',
-      content: '',
-      tags: '',
+      username: currentUser.name,
       file: null,
-      user_id: currentUser.id,
     },
-    validationSchema: SignupSchema,
+    validationSchema: EditProfileSsheme,
     onSubmit: (values, { resetForm }) => {
-      dispatch(requestAddPost(values));
+      dispatch(requestEditingUser({ ...values, id: currentUser.id }));
       resetForm();
       handleClose();
     },
   });
+
   const changeFile = useCallback((event) => {
     const [files] = event.target.files;
     formik.values.file = files;
   }, [formik.values]);
+
   return (
     <Dialog open={open} onClose={handleClose}>
       <form onSubmit={formik.handleSubmit} encType=" multipart/form-data ">
-        <DialogTitle>Add news</DialogTitle>
+        <DialogTitle>Editing user</DialogTitle>
         {userPageError && (<Alert severity="error">{userPageError}</Alert>)}
         <DialogContent>
           <TextField
-            error={!!(formik.touched.title && formik.errors.title)}
+            error={!!(formik.touched.username && formik.errors.username)}
             autoFocus
             margin="dense"
-            id="title"
-            label="Title"
+            id="username"
+            label="Username"
             type="text"
             fullWidth
             variant="standard"
-            name="title"
-            value={formik.values.title}
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-          />
-          <TextField
-            error={!!(formik.touched.content && formik.errors.content)}
-            margin="dense"
-            id="content"
-            label="Content"
-            type="text"
-            fullWidth
-            variant="standard"
-            name="content"
-            value={formik.values.content}
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-          />
-          <TextField
-            error={!!(formik.touched.tags && formik.errors.tags)}
-            margin="dense"
-            id="tags"
-            label="Tags"
-            type="text"
-            fullWidth
-            variant="standard"
-            name="tags"
-            value={formik.values.tags}
+            name="username"
+            value={formik.values.username}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
@@ -106,20 +81,20 @@ function AddPostWindow(props) {
             onChange={changeFile}
           />
         </DialogContent>
-        {userPageloading && (
+        {userPageLoading && (
           <Box sx={{ display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box>
         )}
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Add Post</Button>
+          <Button type="submit">Change</Button>
         </DialogActions>
       </form>
     </Dialog>
   );
 }
-AddPostWindow.propTypes = {
+EditProfileWindow.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
 };
 
-export default AddPostWindow;
+export default EditProfileWindow;

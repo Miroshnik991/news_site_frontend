@@ -7,6 +7,7 @@ import loginWatcher from './loginSaga';
 import currentUserWatcher from './currentUserRequestSaga';
 import userRequestWatcher from './userRequestSaga';
 import addPostWatcher from './addPostSaga';
+import editUserWatcher from './editUserSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -17,5 +18,6 @@ export default function* rootSaga() {
     call(currentUserWatcher),
     call(userRequestWatcher),
     call(addPostWatcher),
+    call(editUserWatcher),
   ]);
 }

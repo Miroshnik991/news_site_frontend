@@ -25,7 +25,7 @@ function PostCard({ postData }) {
         <CardMedia
           component="img"
           height="200"
-          image={postData.image}
+          image={`${process.env.REACT_APP_API_URL}${postData.image}`}
         />
         )
       }

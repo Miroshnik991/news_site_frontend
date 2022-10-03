@@ -10,7 +10,7 @@ import {
 
 function* regWorker(action) {
   try {
-    const { data } = yield call(api.post, '/register', action.payload);
+    const { data } = yield call(api.post, '/api/register', action.payload);
     yield call(setToken, data.token);
     yield put(requestRegistrationSuccess(data.user));
   } catch (error) {
