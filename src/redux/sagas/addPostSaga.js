@@ -15,7 +15,7 @@ function* addPostWorker(action) {
     yield form.append('content', action.payload.content);
     yield form.append('tags', action.payload.tags);
     yield form.append('user_id', 1);
-    const { data } = yield call(api.post, '/posts', form);
+    const { data } = yield call(api.post, '/api/posts', form);
     yield put(requestAddPostSuccess(data));
   } catch (error) {
     yield put(requestAddPostError(error));

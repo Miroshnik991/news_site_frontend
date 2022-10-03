@@ -6,7 +6,7 @@ import { requestAuthSuccess, requestAuthError } from '../actionCreators';
 
 function* userRequestWorker() {
   try {
-    const { data } = yield call(api.post, 'auth');
+    const { data } = yield call(api.post, '/api/auth');
     yield put(requestAuthSuccess(data.user));
   } catch (error) {
     yield put(requestAuthError(error.response.data.message));

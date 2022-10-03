@@ -6,7 +6,7 @@ import api from '../api/index';
 
 function* postsWorker() {
   try {
-    const { data } = yield call(() => api.get('/posts'));
+    const { data } = yield call(() => api.get('/api/posts'));
     yield put(recievePosts(data));
   } catch (error) {
     yield put(getPostsError(error.name));

@@ -11,7 +11,7 @@ import {
 
 function* authWorker(action) {
   try {
-    const { data } = yield call(api.post, '/login', action.payload);
+    const { data } = yield call(api.post, '/api/login', action.payload);
     yield call(setToken, data.token);
     yield put(requestLoginSuccess(data.user));
   } catch (error) {
