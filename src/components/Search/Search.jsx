@@ -28,6 +28,7 @@ function Search(props) {
   useEffect(() => {
     setFilteredPosts(filteredposts);
   }, [filteredposts]);
+
   return (
     <div>
       <Box
