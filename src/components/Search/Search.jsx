@@ -23,11 +23,11 @@ function Search(props) {
   const [textInput, setTextInput] = useState('');
   const [tab, setTab] = useState('all');
 
-  const filteredposts = useMemo(() => PostsFilter(textInput, tab, posts), [textInput, tab]);
+  const filteredPosts = useMemo(() => PostsFilter(textInput, tab, posts), [textInput, tab]);
 
   useEffect(() => {
-    setFilteredPosts(filteredposts);
-  }, [filteredposts]);
+    setFilteredPosts(filteredPosts);
+  }, [filteredPosts]);
 
   return (
     <div>

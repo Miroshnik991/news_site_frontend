@@ -29,15 +29,15 @@ function MainPage() {
     dispatch(createPostsLoader());
   }, []);
 
-  const [filteredposts, setFilteredPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
 
   useEffect(() => {
     setFilteredPosts(posts);
   }, [posts]);
 
   const {
-    totalPages, currentPage, setCurrentPage, nposts,
-  } = usePagination(postsPerPage, filteredposts);
+    totalPages, currentPage, setCurrentPage, paginationPosts,
+  } = usePagination(postsPerPage, filteredPosts);
 
   return (
     <>
@@ -45,7 +45,8 @@ function MainPage() {
       <div style={mainPageStyle}>
         {isFetching && <CircularProgress />}
         {error && <Alert severity="error">{error}</Alert>}
-        {Boolean(posts.length) && nposts.map((post) => <PostCard postData={post} key={post.id} />)}
+        {Boolean(posts.length) && paginationPosts
+          .map((post) => <PostCard postData={post} key={post.id} />)}
       </div>
       <div>
         <Stack spacing={2}>

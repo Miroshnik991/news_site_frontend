@@ -11,9 +11,9 @@ export default function PostsFilter(textInput, tab, posts) {
     ],
     tags: (item) => item.tags.map((tagItem) => tagItem.tag_name),
   };
-  // if (!Object.keys(filterpostsByTabs).includes(tab)) {
-  //   return [];
-  // }
+  if (!Object.keys(filterpostsByTabs).includes(tab)) {
+    return [];
+  }
   const filterFields = filterpostsByTabs[tab];
   const inputLC = textInput.toLowerCase();
   const result = posts.filter((postsItem) => (

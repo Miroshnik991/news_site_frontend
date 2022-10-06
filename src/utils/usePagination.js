@@ -5,12 +5,12 @@ const usePagination = (postsPerPage, filteredposts) => {
   const totalPages = Math.ceil(
     filteredposts.length / postsPerPage,
   );
-  const nposts = filteredposts.slice(
+  const paginationPosts = filteredposts.slice(
     (currentPage - 1) * postsPerPage,
     currentPage * postsPerPage,
   );
   return {
-    totalPages, currentPage, setCurrentPage, nposts,
+    totalPages, currentPage, setCurrentPage, paginationPosts,
   };
 };
 
