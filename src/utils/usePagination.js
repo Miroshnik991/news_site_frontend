@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-const usePagination = (postsPerPage, filteredposts) => {
+const usePagination = (postsPerPage, filteredPosts) => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(
-    filteredposts.length / postsPerPage,
+    filteredPosts.length / postsPerPage,
   );
-  const paginationPosts = filteredposts.slice(
+  const paginationPosts = filteredPosts.slice(
     (currentPage - 1) * postsPerPage,
     currentPage * postsPerPage,
   );
